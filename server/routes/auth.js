@@ -129,7 +129,8 @@ app.post('/submit', async (req, res) => {
 app.post('/getreport', async (req, res) => {
   try {
     const { player } = req.body;
-    const command = `python ./reportGen.py "${player}"`;
+    // const command = `python ./reportGen.py "${player}"`;
+    const command = "pip install joblib, scikit_learn,shap,xgboost,pandas,numpy,matplotlib"
     
 
     console.log(`Executing command: ${command}`);
