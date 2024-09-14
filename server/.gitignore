@@ -1,0 +1,6 @@
+# Ignore node_modules directory
+/node_modules
+
+# Ignore specific files and directories
+random_forest_model.joblib
+
