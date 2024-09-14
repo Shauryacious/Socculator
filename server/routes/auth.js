@@ -94,8 +94,8 @@ app.post("/fetchuser", fetchuser, async (req, res) => {
 app.post('/submit', async (req, res) => {
   try {
     const { player, team, opponent, status, model_name } = req.body;
-    const command = `python python/main.py ${model_name} "${player}" "${team}" "${opponent}" ${status}`;
-
+    //const command = `python python/main.py ${model_name} "${player}" "${team}" "${opponent}" ${status}`;
+    const command = 'ls';
     console.log(`Executing command: ${command}`);
 
     exec(command, (error, stdout, stderr) => {
@@ -130,8 +130,8 @@ app.post('/submit', async (req, res) => {
 app.post('/getreport', async (req, res) => {
   try {
     const { player } = req.body;
-    // const command = `python ../python/reportGen.py "${player}"`;
-    const command = 'ls';
+    const command = `python ../python/reportGen.py "${player}"`;
+    
 
     console.log(`Executing command: ${command}`);
 
