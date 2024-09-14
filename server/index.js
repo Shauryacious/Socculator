@@ -1,6 +1,7 @@
 const connect= require('./db');
 const express = require('express')
 const cors=require('cors');
+const { exec } = require('child_process');
 require('dotenv').config();
 const port=3002;
 connect();
