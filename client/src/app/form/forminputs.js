@@ -40,13 +40,13 @@ export default function FromInputs({
   const filteredOpponentTeams = availableTeamsForOpponentTeam.filter((team) => team !== playerTeam);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-800 to-gray-900">
-      <div className="shadow-xl rounded-lg p-8 bg-gray-700 bg-opacity-80 w-full max-w-4xl transition-all duration-300 ease-in-out transform hover:scale-105">
-        
+    <div className="flex justify-center items-center min-h-screen bg-black">
+      <div className="shadow-xl rounded-lg p-8 bg-[#0d0d12] border border-[#2a2a3d] w-full max-w-4xl transition-all duration-300 ease-in-out transform hover:scale-105">
+
         {/* Teams */}
         <div className="flex items-center mb-8">
           <div className="flex-1 mr-4">
-            <label className="block text-gray-300 text-sm font-semibold mb-2">Select Your Team</label>
+            <label className="block text-neutral-400 text-sm font-semibold mb-2">Select Your Team</label>
             <div className="flex justify-between items-center space-x-4">
               <Droplist list={filteredPlayerTeams} getvalue={handlePlayerTeamChange} PLACEHOLDER="Select Your Team" />
               <div className="flex justify-center mt-2">
@@ -57,7 +57,7 @@ export default function FromInputs({
                     className="w-16 h-16 rounded-full border-2 border-white"
                   />
                 ) : (
-                  <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center text-gray-300">
+                  <div className="w-16 h-16 bg-[#1b1b25] rounded-full flex items-center justify-center text-neutral-400">
                     No Flag
                   </div>
                 )}
@@ -65,10 +65,10 @@ export default function FromInputs({
             </div>
           </div>
 
-          <div className="mx-4 text-center text-gray-300 text-2xl font-bold">VS</div>
+          <div className="mx-4 text-center text-neutral-400 text-2xl font-bold">VS</div>
 
           <div className="flex-1 ml-4">
-            <label className="block text-gray-300 text-sm font-semibold mb-2">Select Opponent Team</label>
+            <label className="block text-neutral-400 text-sm font-semibold mb-2">Select Opponent Team</label>
             <div className="flex justify-between items-center space-x-4">
               <div className="flex justify-center mt-2">
                 {opponentTeam ? (
@@ -78,7 +78,7 @@ export default function FromInputs({
                     className="w-16 h-16 rounded-full border-2 border-white"
                   />
                 ) : (
-                  <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center text-gray-300">
+                  <div className="w-16 h-16 bg-[#1b1b25] rounded-full flex items-center justify-center text-neutral-400">
                     No Flag
                   </div>
                 )}
@@ -89,31 +89,28 @@ export default function FromInputs({
         </div>
 
         {/* Player Name */}
-        <label className="block text-gray-300 text-sm font-semibold mb-2">Select Player Name</label>
+        <label className="block text-neutral-400 text-sm font-semibold mb-2">Select Player Name</label>
         <div className="mb-6">
           <Droplist list={players} getvalue={setPlayerName} PLACEHOLDER="Enter Player Name" />
         </div>
 
         {/* Status */}
         <div className="mb-6">
-          <label className="block text-gray-300 text-sm font-semibold mb-2">Select Status</label>
+          <label className="block text-neutral-400 text-sm font-semibold mb-2">Select Status</label>
           <Droplist list={statusArray} getvalue={setStatus} />
         </div>
 
         {/* Model */}
         <div className="mb-6">
-          <label className="block text-gray-300 text-sm font-semibold mb-2">Select Model</label>
+          <label className="block text-neutral-400 text-sm font-semibold mb-2">Select Model</label>
           <Droplist list={modelArray} getvalue={setModel} />
         </div>
 
         {/* Submit Button */}
         <div className="text-center mt-8">
-          <Button 
-            onClick={handleSubmit} 
-            color="primary" 
-            size="lg" 
-            auto
-            className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-110"
+          <Button
+            onClick={handleSubmit}
+            className="bg-[linear-gradient(110deg,#0d0d12,45%,#1a1a22,55%,#0d0d12)] bg-[length:200%_100%] text-neutral-400 font-bold py-3 px-8 rounded-full shadow-lg border border-[#2a2a3d] transition-transform transform hover:scale-110 hover:text-white"
           >
             Predict the Outcome
           </Button>
