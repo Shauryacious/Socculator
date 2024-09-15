@@ -35,7 +35,7 @@ function LoginPage() {
         setCookie("authToken", data.authToken, { path: "/", maxAge: 604800 }); // 7 days expiration (maxAge in seconds)
 
         // Force reload the page
-        window.location.href = "/form"; // Use window.location.href to trigger a full reload
+        window.location.href = "/"; // Use window.location.href to trigger a full reload
       } else {
         // Display login error if authentication fails
         setErrorMessage("Invalid credentials. Please try again.");

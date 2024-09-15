@@ -1,11 +1,11 @@
+'use client'
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button } from "./ui/moving-border";
-import { FaDiscord, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaDiscord, FaFacebook, FaTwitter, FaInstagram, FaSignOutAlt } from "react-icons/fa";
 import { BackgroundBeams } from "./ui/background-beams";
-import { HiOutlineCodeBracket } from "react-icons/hi2";
-import { MdDownload } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 
 const socialMediaLinks = [
   { href: "https://www.facebook.com", icon: <FaFacebook size={24} /> },
@@ -13,16 +13,35 @@ const socialMediaLinks = [
   { href: "https://www.instagram.com", icon: <FaInstagram size={24} /> },
   { href: "https://www.discord.com", icon: <FaDiscord size={24} /> },
 ];
+
 const mainButtons = [
-  { href: "#", text: "Player Evaluation", icon: <FaArrowRight size={16} /> },
-  { href: "#", text: "Score Prediction", icon: <FaArrowRight size={16} /> },
-];
-const ghostButtons = [
-  { href: "/login", text: "Login " },
-  { href: "/signup", text: "Sign Up" },
+  { href: "/form", text: "Player Evaluation", icon: <FaArrowRight size={16} /> },
+  { href: "/form", text: "Score Prediction", icon: <FaArrowRight size={16} /> },
 ];
 
 function HeroSection() {
+  const [cookies, setCookie, removeCookie] = useCookies(["authToken"]);
+  const [authToken, setAuthToken] = useState(null);
+
+  useEffect(() => {
+    // This code runs only on the client
+    setAuthToken(cookies.authToken || null);
+  }, [cookies.authToken]);
+
+  const handleLogout = () => {
+    // Clear the token from cookies and update the state
+    removeCookie("authToken");
+    setAuthToken(null);
+  };
+
+  // Conditional buttons based on authToken
+  const ghostButtons = authToken
+    ? [] // No buttons if the user is logged in
+    : [
+        { href: "/login", text: "Login" },
+        { href: "/signup", text: "Sign Up" },
+      ];
+
   return (
     <div className="h-auto md:h-[50rem] w-full rounded-md flex flex-col items-center justify-center relative overflow-hidden mx-auto py-10 md:py-0">
       <BackgroundBeams className="absolute top-0 left-0 w-full h-full z-0" />
@@ -47,13 +66,22 @@ function HeroSection() {
         ))}
       </div>
       <div className="absolute top-12 right-12 z-20 flex space-x-4">
-        {ghostButtons.map((button, index) => (
-          <Link key={index} href={button.href}>
-            <button className="inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors px-4 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-              {button.text}
-            </button>
-          </Link>
-        ))}
+        {authToken ? (
+          <button
+            onClick={handleLogout}
+            className="inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors px-4 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+          >
+            Logout <FaSignOutAlt className="ml-2" />
+          </button>
+        ) : (
+          ghostButtons.map((button, index) => (
+            <Link key={index} href={button.href}>
+              <button className="inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors px-4 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                {button.text}
+              </button>
+            </Link>
+          ))
+        )}
       </div>
       <div className="p-4 relative z-10 w-full text-center">
         <h1 className="mt-60 mb-5 md:mt-60 text-2xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
