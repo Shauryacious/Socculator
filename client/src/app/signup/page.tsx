@@ -40,7 +40,7 @@ function SignupPage() {
 
     try {
       // Make POST request to signup API
-      const response = await fetch("https://socculator.onrender.com/auth/", {
+      const response = await fetch("http://localhost:3002/auth/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

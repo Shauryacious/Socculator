@@ -57,7 +57,7 @@ export default function Page() {
         };
 
         try {
-            const submitResponse = await fetch("https://socculator.onrender.com/auth/submit", {
+            const submitResponse = await fetch("http://localhost:3002/auth/submit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function Page() {
             setResultLines(resultLines);
             setSubmitted(true);
 
-            const reportResponse = await fetch("https://socculator.onrender.com/auth/getreport", {
+            const reportResponse = await fetch("http://localhost:3002/auth/getreport", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
