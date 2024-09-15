@@ -70,59 +70,59 @@ export default function PlayerDetails({ result, teamname }) {
     };
 
     return (
-        <div className="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-lg flex flex-col space-y-6">
-            <h2 className="text-3xl font-bold mb-4 text-center" style={{color:'black'}}>Player Stats</h2>
+        <div className="p-6 max-w-4xl mx-auto bg-[#0d0d12] shadow-lg rounded-lg flex flex-col space-y-6">
+            <h2 className="text-3xl font-bold mb-4 text-center" style={{color: '#c2c2c2'}}>Player Stats</h2>
 
             <div className="flex flex-wrap gap-6">
                 {/* Total Goals */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Total Goals</h3>
-                    <p className="text-2xl font-bold text-gray-900">{total_goals}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Total Goals</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{total_goals}</p>
                 </div>
 
                 {/* Goals in Wins */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Goals in Wins</h3>
-                    <p className="text-2xl font-bold text-gray-900">{goals_in_wins}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Goals in Wins</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{goals_in_wins}</p>
                 </div>
 
                 {/* Goals in Losses */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Goals in Losses</h3>
-                    <p className="text-2xl font-bold text-gray-900">{goals_in_losses}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Goals in Losses</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{goals_in_losses}</p>
                 </div>
             </div>
 
             <div className="flex flex-wrap gap-6">
                 {/* Home Goals */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Home Goals</h3>
-                    <p className="text-2xl font-bold text-gray-900">{home_goals}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Home Goals</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{home_goals}</p>
                 </div>
 
                 {/* Away Goals */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Away Goals</h3>
-                    <p className="text-2xl font-bold text-gray-900">{away_goals}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Away Goals</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{away_goals}</p>
                 </div>
 
                 {/* Own Goals */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Own Goals</h3>
-                    <p className="text-2xl font-bold text-gray-900">{own_goals}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Own Goals</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{own_goals}</p>
                 </div>
 
                 {/* Penalty Goals */}
-                <div className="flex-1 min-w-[150px] bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800">Penalty Goals</h3>
-                    <p className="text-2xl font-bold text-gray-900">{penalty_goals}</p>
+                <div className="flex-1 min-w-[150px] bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2]">Penalty Goals</h3>
+                    <p className="text-2xl font-bold text-[#ffffff]">{penalty_goals}</p>
                 </div>
             </div>
 
             {/* Goals Against Teams Pie Chart */}
             {Object.keys(filteredGoalsAgainstTeams).length > 0 && (
-                <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Goals Against Teams</h3>
+                <div className="bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2] mb-4">Goals Against Teams</h3>
                     <div className="relative h-64">
                         <Pie data={pieData} options={{ responsive: true, maintainAspectRatio: false }} />
                     </div>
@@ -131,8 +131,8 @@ export default function PlayerDetails({ result, teamname }) {
 
             {/* Goals by Date Line Chart */}
             {Object.keys(goals_by_date).length > 0 && (
-                <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Goals by Date</h3>
+                <div className="bg-[#1a1a22] p-4 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-[#c2c2c2] mb-4">Goals by Date</h3>
                     <div className="relative h-64">
                         <Line data={lineData} options={{ responsive: true, maintainAspectRatio: false }} />
                     </div>
