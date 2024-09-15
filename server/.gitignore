@@ -4,3 +4,4 @@
 # Ignore specific files and directories
 random_forest_model.joblib
 
+.env
