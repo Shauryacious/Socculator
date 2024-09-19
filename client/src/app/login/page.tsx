@@ -2,13 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCookies } from "react-cookie";
-
+import { useRouter } from "next/navigation";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies, setCookie] = useCookies(["authToken"]); // Initialize useCookies
-
+  const router = useRouter();
   const handleLogin = async () => {
     // Basic email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,7 +35,8 @@ function LoginPage() {
         setCookie("authToken", data.authToken, { path: "/", maxAge: 604800 }); // 7 days expiration (maxAge in seconds)
 
         // Force reload the page
-        window.location.href = "/"; // Use window.location.href to trigger a full reload
+        window.location.href = "/";
+        router.push("/"); // Use window.location.href to trigger a full reload
       } else {
         // Display login error if authentication fails
         setErrorMessage("Invalid credentials. Please try again.");

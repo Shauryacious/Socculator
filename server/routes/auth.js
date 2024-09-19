@@ -1,40 +1,40 @@
-const express=require('express');
-const user=require('../modles/auth');
-const bycrypt=require("bcryptjs");
-const jsonweb=require("jsonwebtoken");
+const express = require('express');
+const user = require('../modles/auth');
+const bycrypt = require("bcryptjs");
+const jsonweb = require("jsonwebtoken");
 const { exec } = require('child_process');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const serect_data="This is very confidential"
-const fetchuser=require("../middleware/fetchuser");
-const app=express();
+const serect_data = "This is very confidential"
+const fetchuser = require("../middleware/fetchuser");
+const app = express();
 
 
 //This is for creating a new user
 app.post('/', async (req, res) => {
   try {
-    let success=false;
-    const { email, password, name,mobile } = req.body;
+    let success = false;
+    const { email, password, name, mobile } = req.body;
 
     const existingUser = await user.findOne({ email: email });
     if (existingUser) {
-      return res.json({success:success})
+      return res.json({ success: success })
     }
-
+    //salting with 10 length regulart grammer
     const hashedPassword = await bycrypt.hash(password, 10);
     const newUser = new user({
       email: email,
       name: name,
       password: hashedPassword,
-      mobile:mobile
+      mobile: mobile
     });
 
     await newUser.save();
-    const id=newUser._id;
+    const id = newUser._id;
     // Create a JWT token with only the user ID as payload
-    const token = jsonweb.sign({id:id}, serect_data);
-    success=true;
-    res.json({ authToken: token,success:success });
+    const token = jsonweb.sign({ id: id }, serect_data);
+    success = true;
+    res.json({ authToken: token, success: success });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -53,13 +53,13 @@ app.post("/login", async (req, res) => {
       return res.status(404).send("User with this email does not exist in the database");
     }
 
-    const isPasswordValid =  bycrypt.compare(password, findUser.password);
+    const isPasswordValid = bycrypt.compare(password, findUser.password);
 
     if (!isPasswordValid) {
       return res.status(401).send("Incorrect password");
     }
-    const id = findUser._id ; // Create a payload object with user ID
-    const token = jsonweb.sign({id:id}, serect_data);
+    const id = findUser._id; // Create a payload object with user ID
+    const token = jsonweb.sign({ id: id }, serect_data);
 
     res.json({ authToken: token, success: true });
   } catch (error) {
@@ -77,7 +77,7 @@ app.post("/fetchuser", fetchuser, async (req, res) => {
       res.status(403).send("Invalid token");
     } else {
       try {
-        const findUser = await user.findOne({ _id:authData.id });
+        const findUser = await user.findOne({ _id: authData.id });
         if (findUser) {
           res.json(findUser);
         } else {
@@ -94,7 +94,7 @@ app.post("/fetchuser", fetchuser, async (req, res) => {
 app.post('/submit', async (req, res) => {
   try {
     const { player, team, opponent, status, model_name } = req.body;
-    const command = `python ./python/main.py ${model_name} "${player}" "${team}" "${opponent}" ${status}`;
+    const command = `python python/main.py ${model_name} "${player}" "${team}" "${opponent}" ${status}`;
 
     console.log(`Executing command: ${command}`);
 
@@ -108,7 +108,7 @@ app.post('/submit', async (req, res) => {
       let combinedOutput = `${stdout}\n${stderr}`;
 
       // Define the pattern after which content should be removed
-      const pattern = "C:\\";
+      const pattern = "c:/";
 
       // Find the position of the pattern
       const patternIndex = combinedOutput.indexOf(pattern);
@@ -130,10 +130,10 @@ app.post('/submit', async (req, res) => {
 app.post('/getreport', async (req, res) => {
   try {
     const { player } = req.body;
-    const command = `python ./python/reportGen.py "${player}"`;
+    const command = `python python/reportGen.py "${player}"`;
 
     console.log(`Executing command: ${command}`);
-
+    //using child preocess to run the command on terminal 
     exec(command, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing Python script: ${error.message}`);
@@ -166,5 +166,5 @@ app.post('/getreport', async (req, res) => {
   }
 });
 
-module.exports=app;
+module.exports = app;
 

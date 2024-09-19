@@ -2,6 +2,7 @@
 
 import React from "react";
 import PlayerCard from "@/components/PlayerCard"; // Adjust the import path as necessary
+import Navbar from "@/components/Navbar";
 
 const App = () => {
   const player = {
@@ -11,6 +12,9 @@ const App = () => {
 
   return (
     <div className=" bg-black">
+      <div className="relative w-full flex items-center justify-center ">
+        <Navbar />
+      </div>
       <PlayerCard player={player} />
     </div>
   );

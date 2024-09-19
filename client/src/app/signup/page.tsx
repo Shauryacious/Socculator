@@ -45,11 +45,11 @@ function SignupPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
-            name:name,
-            email:email,
-            password:password,
-            phone:123456789
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          phone: 123456789,
         }),
       });
 
@@ -62,7 +62,7 @@ function SignupPage() {
         }
 
         // Redirect to /form page
-        router.push("/form");
+        router.push("/");
       } else {
         setErrorMessage("Signup failed. Please try again.");
       }
