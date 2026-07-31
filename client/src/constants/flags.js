@@ -231,7 +231,7 @@ export const countryCodes = {
     "Taiwan, Republic Of China": "TW",
     "Tanzania, United Republic of": "TZ",
     "Ukraine": "UA",
-    "Uganda": "UG
+    "Uganda": "UG",
     "United States Minor Outlying Islands": "UM",
     "United States": "US",
     "Uruguay": "UY",

@@ -19,7 +19,7 @@ function LoginPage() {
 
     try {
       // Make POST request to login API
-      const response = await fetch("http://localhost:3002/auth/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ function LoginPage() {
           </button>
         </div>
         <div className="mt-6 flex justify-center">
-          <p className="text-neutral-400">Don't have an account? </p>
+          <p className="text-neutral-400">Don&apos;t have an account? </p>
           <Link href="/signup">
             <span className="ml-2 text-neutral-300 hover:text-white cursor-pointer">
               Sign Up

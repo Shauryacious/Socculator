@@ -63,7 +63,7 @@ export default function Page() {
     };
 
     try {
-      const submitResponse = await fetch("http://localhost:3002/auth/submit", {
+      const submitResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function Page() {
       setSubmitted(true);
 
       const reportResponse = await fetch(
-        "http://localhost:3002/auth/getreport",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/getreport`,
         {
           method: "POST",
           headers: {

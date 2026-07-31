@@ -27,7 +27,7 @@ export default function LoginForm() {
 
     try {
       // Make POST request to login API
-      const response = await fetch("http://localhost:3002/auth/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export default function LoginForm() {
       if (data.success) {
         // Store authToken in cookie using react-cookie
         setCookie('authToken', data.authToken, { path: '/', maxAge: 604800 }); // 7 days expiration (maxAge in seconds)
-        
+
         // Force reload the page
         window.location.href = "/form"; // Use window.location.href to trigger a full reload
       } else {
@@ -69,10 +69,10 @@ export default function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        
+
         {/* Error message for email */}
         {emailError && <p className="text-red-500 text-sm mb-4">{emailError}</p>}
-        
+
         {/* Password Input */}
         <label className="block mb-2 text-gray-700 font-semibold">Password</label>
         <Input
@@ -84,7 +84,7 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        
+
         {/* Error message for login */}
         {loginError && <p className="text-red-500 text-sm mb-4">{loginError}</p>}
 
